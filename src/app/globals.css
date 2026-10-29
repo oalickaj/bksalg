@@ -1,0 +1,167 @@
+:root {
+  --bg: #f4f5f7;
+  --card: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --primary: #1d4ed8;
+  --primary-text: #ffffff;
+  --success-bg: #ecfdf3;
+  --success-border: #a6e9c3;
+  --success-text: #05603a;
+  --warn-bg: #fff8eb;
+  --warn-border: #fcd99a;
+  --warn-text: #93370d;
+  --error: #b42318;
+  --error-bg: #fef3f2;
+  --info-bg: #f0f6ff;
+  --info-border: #c9dcff;
+  --radius: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1115;
+    --card: #181b21;
+    --text: #f3f4f6;
+    --muted: #9ca3af;
+    --border: #2a2f38;
+    --primary: #3b82f6;
+    --success-bg: #0c2a1c;
+    --success-border: #1f6b45;
+    --success-text: #7ee2b0;
+    --warn-bg: #2d2010;
+    --warn-border: #7a5413;
+    --warn-text: #fcd99a;
+    --error: #f97066;
+    --error-bg: #2d1312;
+    --info-bg: #121d33;
+    --info-border: #284a85;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+.container { max-width: 560px; margin: 0 auto; padding: 32px 16px 64px; }
+.container:has(.wide-page) { max-width: 1200px; }
+
+h1 { font-size: 1.75rem; line-height: 1.2; margin: 0 0 8px; }
+h2 { font-size: 1.25rem; margin: 0 0 8px; }
+p { margin: 0 0 12px; }
+a { color: var(--primary); }
+
+.eyebrow { color: var(--muted); font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 4px; }
+.lead { color: var(--muted); margin-bottom: 24px; }
+.muted { color: var(--muted); }
+.small { font-size: 0.875rem; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.card + .card { margin-top: 16px; }
+.card.success { background: var(--success-bg); border-color: var(--success-border); }
+.card.warn { background: var(--warn-bg); border-color: var(--warn-border); }
+.card.info { background: var(--info-bg); border-color: var(--info-border); }
+.card.success h2 { color: var(--success-text); }
+.card.warn h2 { color: var(--warn-text); }
+
+.form { display: grid; gap: 16px; }
+.field { display: grid; gap: 6px; }
+label { font-weight: 600; font-size: 0.95rem; }
+
+input, select {
+  width: 100%;
+  font: inherit;
+  font-size: 16px; /* hindrer zoom på iPhone */
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+}
+input:focus, select:focus { outline: 2px solid var(--primary); outline-offset: 1px; border-color: transparent; }
+input[aria-invalid="true"] { border-color: var(--error); }
+
+.error { color: var(--error); }
+.alert { background: var(--error-bg); color: var(--error); border-radius: 8px; padding: 12px; margin: 0; }
+
+button, .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font: inherit;
+  font-weight: 600;
+  background: var(--primary);
+  color: var(--primary-text);
+  border: 0;
+  border-radius: 8px;
+  padding: 14px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 48px;
+}
+button:disabled { opacity: 0.6; cursor: wait; }
+button.secondary, .button.secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+button.danger { background: var(--error); }
+button.small, .button.small { min-height: 34px; padding: 6px 10px; font-size: 0.85rem; }
+.form > button { width: 100%; font-size: 1.05rem; }
+
+.hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+.countdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; margin: 16px 0; }
+.countdown > div { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 4px; }
+.countdown .num { display: block; font-size: 2rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.countdown .lbl { color: var(--muted); font-size: 0.8rem; }
+.countdown-done { font-weight: 600; text-align: center; padding: 20px 0; }
+
+.pay {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  margin: 12px 0;
+  display: grid;
+  gap: 4px;
+}
+.pay strong { font-size: 1.1rem; }
+.bignum { font-size: 3rem; font-weight: 800; line-height: 1; margin: 8px 0 12px; font-variant-numeric: tabular-nums; }
+
+/* ---------- Admin ---------- */
+.admin-header { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.stat { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.stat .num { font-size: 1.75rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.stat .lbl { color: var(--muted); font-size: 0.85rem; }
+
+.filters { display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 8px; margin-bottom: 12px; align-items: end; }
+@media (max-width: 720px) { .filters { grid-template-columns: 1fr 1fr; } .filters input[name="q"] { grid-column: 1 / -1; } }
+
+.table-wrap { overflow-x: auto; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); white-space: nowrap; vertical-align: middle; }
+th { position: sticky; top: 0; background: var(--card); font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
+tr:last-child td { border-bottom: 0; }
+td.actions { display: flex; gap: 6px; }
+td.actions form { margin: 0; }
+
+.badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; border: 1px solid var(--border); }
+.badge.plass { background: var(--success-bg); border-color: var(--success-border); color: var(--success-text); }
+.badge.venteliste { background: var(--info-bg); border-color: var(--info-border); }
+.badge.frigitt { background: var(--error-bg); color: var(--error); border-color: transparent; }
+.overdue { color: var(--error); font-weight: 600; }
+.flash { background: var(--info-bg); border: 1px solid var(--info-border); border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; }
